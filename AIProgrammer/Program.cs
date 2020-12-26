@@ -31,24 +31,24 @@ namespace AIProgrammer
         private static GAStatus _bestStatus = new GAStatus(); // Holds values for displaying best generation statistics.
         private static DateTime _startTime = DateTime.Now; // Time the program was started.
         private static string _appendCode = null; // Program code, containing functions, that will be appended to main program code
-        private static TargetParams _targetParams = new TargetParams { TargetString = "hi" }; // Used for displaying the target fitness
+        private static TargetParams _targetParams = new TargetParams { TargetString = "0123456789" }; // Used for displaying the target fitness
 
         #endregion
 
         #region Genetic Algorithm Settings
 
-        private static double _crossoverRate = 0.70; // Percentage chance that a child genome will use crossover of two parents.
-        private static double _mutationRate = 0.01; // Percentage chance that a child genome will mutate a gene.
+        private static double _crossoverRate = 0.8; // Percentage chance that a child genome will use crossover of two parents.
+        private static double _mutationRate = 0.1; // Percentage chance that a child genome will mutate a gene.
         private static int _genomeSize = 150; // Number of programming instructions in generated program (size of genome array). loops).
-        private static int _maxGenomeSize = 150; // The max length a genome may grow to (only applicable if _expandAmount > 0).
+        private static int _maxGenomeSize = 1000; // The max length a genome may grow to (only applicable if _expandAmount > 0).
         private static int _maxIterationCount = 5000; // Max iterations a program may run before being killed (prevents infinite loops).
-        private static int _expandAmount = 0; // The max genome size will expand by this amount, every _expandRate iterations (may help learning). Set to 0 to disable.
-        private static int _expandRate = 5000; // The max genome size will expand by _expandAmount, at this interval of generations.
+        private static int _expandAmount = 1; // The max genome size will expand by this amount, every _expandRate iterations (may help learning). Set to 0 to disable.
+        private static int _expandRate = 50000; // The max genome size will expand by _expandAmount, at this interval of generations.
         private static int _originalGenomeSize = _genomeSize;
 
-        #endregion
+		#endregion
 
-        private static IFunction _functionGenerator = null; //new StringFunction(() => GetFitnessMethod(), (program, param) => OnFunctionStepComplete(program, param), _bestStatus, fitnessFunction, OnGeneration, _crossoverRate, _mutationRate, _genomeSize, _targetParams); /* Functions require setting BrainfuckVersion=2 in App.config */
+		private static IFunction _functionGenerator = null;///= new StringFunction(() => GetFitnessMethod(), (program, param) => OnFunctionStepComplete(program, param), _bestStatus, fitnessFunction, OnGeneration, _crossoverRate, _mutationRate, _genomeSize, _targetParams); /* Functions require setting BrainfuckVersion=2 in App.config */
 
         /// <summary>
         /// Selects the type of fitness algorithm to use (Hello World solutions, Calculation solutions, etc).
@@ -65,15 +65,16 @@ namespace AIProgrammer
         /// <returns>IFitness</returns>
         private static IFitness GetFitnessMethod()
         {
-            return new StringStrictFitness(_ga, _maxIterationCount, _targetParams.TargetString, _appendCode);
-        }
+			///return new StringStrictFitness(_ga, _maxIterationCount, _targetParams.TargetString, _appendCode);
+			return new StringOptimizedFitness(_ga, _maxIterationCount, _targetParams.TargetString);
+		}
 
-        /// <summary>
-        /// Callback handler for each time a function completes solving a step of its process. For example, solving a word within a sentence, etc.
-        /// </summary>
-        /// <param name="program">Complete append code generated so far. This can be set as the value for _appendCode to generate programs.</param>
-        /// <param name="param">Optional parameter supplied by Function to indicate what has been solved (i.e., the term, sentence, numeric value, etc).</param>
-        private static void OnFunctionStepComplete(string program, object param)
+		/// <summary>
+		/// Callback handler for each time a function completes solving a step of its process. For example, solving a word within a sentence, etc.
+		/// </summary>
+		/// <param name="program">Complete append code generated so far. This can be set as the value for _appendCode to generate programs.</param>
+		/// <param name="param">Optional parameter supplied by Function to indicate what has been solved (i.e., the term, sentence, numeric value, etc).</param>
+		private static void OnFunctionStepComplete(string program, object param)
         {
             // Reset genome size back to its original value for subsequent solving steps.
             _genomeSize = _originalGenomeSize;

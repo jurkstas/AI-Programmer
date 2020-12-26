@@ -112,13 +112,14 @@ namespace AIProgrammer.Managers
 
             foreach (double d in array)
             {
-                if (d <= 0.125) sb.Append('>');
-                else if (d <= 0.25) sb.Append('<');
-                else if (d <= 0.375) sb.Append('+');
-                else if (d <= 0.5) sb.Append('-');
-                else if (d <= 0.625) sb.Append('.');
-                else if (d <= 0.75) sb.Append(',');
-                else if (d <= 0.875) sb.Append('[');
+                if (d < 0.04) sb.Append('N');
+                else if (d <= 0.16) sb.Append('>');
+                else if (d <= 0.28) sb.Append('<');
+                else if (d <= 0.40) sb.Append('+');
+                else if (d <= 0.52) sb.Append('-');
+                else if (d <= 0.64) sb.Append('.');
+                else if (d <= 0.76) sb.Append(',');
+                else if (d <= 0.88) sb.Append('[');
                 else sb.Append(']');
             }
 
@@ -209,14 +210,14 @@ namespace AIProgrammer.Managers
             for (int i = 0; i < code.Length; i++)
             {
                 char ch = code[i];
-
-                if (ch == '>') array[i] = 0.125;
-                if (ch == '<') array[i] = 0.25;
-                if (ch == '+') array[i] = 0.375;
-                if (ch == '-') array[i] = 0.5;
-                if (ch == '.') array[i] = 0.625;
-                if (ch == ',') array[i] = 0.75;
-                if (ch == '[') array[i] = 0.875;
+                if (ch == 'N') array[i] = 0.04;
+                if (ch == '>') array[i] = 0.16;
+                if (ch == '<') array[i] = 0.28;
+                if (ch == '+') array[i] = 0.40;
+                if (ch == '-') array[i] = 0.52;
+                if (ch == '.') array[i] = 0.64;
+                if (ch == ',') array[i] = 0.76;
+                if (ch == '[') array[i] = 0.88;
                 if (ch == ']') array[i] = 1;
             }
 

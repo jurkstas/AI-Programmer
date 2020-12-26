@@ -1,3 +1,4 @@
+[alias]      diff = diff --ignore-space-change
 *.cache
 *.dll
 *.pdb
@@ -10,3 +11,4 @@
 *.xml
 Debug/
 Release/
+.vs/*

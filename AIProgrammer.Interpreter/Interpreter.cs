@@ -230,7 +230,8 @@ namespace AIProgrammer
             // Create the instruction set for Basic Brainfuck.
             this.m_InstructionSet.Add('+', () => { if (!m_ExitLoop) this.m_Memory[this.m_DataPointer]++; });
             this.m_InstructionSet.Add('-', () => { if (!m_ExitLoop) this.m_Memory[this.m_DataPointer]--; });
-
+            // add NOP instruction.
+            this.m_InstructionSet.Add('N', () => { if (!m_ExitLoop) ; }); 
             this.m_InstructionSet.Add('>', () => { if (!m_ExitLoop) this.m_DataPointer++; });
             this.m_InstructionSet.Add('<', () => { if (!m_ExitLoop) this.m_DataPointer--; });
 
