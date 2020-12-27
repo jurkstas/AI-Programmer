@@ -178,7 +178,7 @@ namespace AIProgrammer
         static void Main(string[] args)
         {
             // Genetic algorithm setup.
-            _ga = new GA(_crossoverRate, _mutationRate, 100, 10000000, _genomeSize);
+            _ga = new GA(_crossoverRate, _mutationRate, _PopulationSize, 10000000, _genomeSize);
 
             if (_functionGenerator != null)
             {
