@@ -10,5 +10,10 @@
 !lib/*.dll
 *.xml
 Debug/
+<<<<<<< HEAD
 Release/
 .vs/*
+=======
+Release/
+.vs/*
+>>>>>>> Update .gitignore
