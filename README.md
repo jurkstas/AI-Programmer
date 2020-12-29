@@ -1,3 +1,9 @@
+This fork
+=========
+I forked this repo to play with this fascinating concept. I made a few changes, but did not get any meaningful results:
+  1. Added NOP - operation that does nothing.
+  2. Added population size to genetic algorithm parameters instead of just having it hardcoded in the function call.
+
 AI-Programmer
 =========
 
