@@ -31,7 +31,6 @@ namespace AIProgrammer
         private static GAStatus _bestStatus = new GAStatus(); // Holds values for displaying best generation statistics.
         private static DateTime _startTime = DateTime.Now; // Time the program was started.
         private static string _appendCode = null; // Program code, containing functions, that will be appended to main program code
-        private static TargetParams _targetParams = new TargetParams { TargetString = "0123456789" }; // Used for displaying the target fitness
         private static TargetParams _targetParams = new TargetParams { TargetString = "makerspace48" }; // Used for displaying the target fitness
 
         #endregion
